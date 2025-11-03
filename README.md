@@ -46,7 +46,9 @@ POSTGRES_PORT=5432
 PGADMIN_DEFAULT_EMAIL=admin@admin.com
 PGADMIN_DEFAULT_PASSWORD=admin
 PGADMIN_PORT=5050
-🐳 Subindo os containers
+
+```
+## 🐳 Subindo os containers
 1️⃣ Build e inicialização
 Execute o comando abaixo para construir e subir os containers:
 
@@ -65,15 +67,17 @@ postgres_db → Banco de dados PostgreSQL
 
 pgadmin → Interface gráfica do banco
 
-🌐 Acessos
+## 🌐 Acessos
 Serviço	URL	Usuário / Senha
 API Node.js	http://localhost:3000	—
 pgAdmin	http://localhost:5050	admin@admin.com / admin
 
-🧭 Configurando o pgAdmin
+## 🧭 Configurando o pgAdmin
 Acesse http://localhost:5050
 
 Faça login com:
+
+```
 
 Email: admin@admin.com
 
@@ -91,7 +95,9 @@ Username: postgres
 
 Password: postgres
 
-🧰 Scripts disponíveis
+```
+
+## 🧰 Scripts disponíveis
 bash
 Copy code
 npm run dev   # Inicia o servidor em modo desenvolvimento
@@ -106,7 +112,8 @@ Você deverá ver um JSON semelhante a:
 json
 Copy code
 { "time": "2025-11-03T22:10:00.000Z" }
-🧹 Comandos úteis do Docker
+
+## 🧹 Comandos úteis do Docker
 bash
 Copy code
 docker compose logs -f app   # Ver logs da aplicação
