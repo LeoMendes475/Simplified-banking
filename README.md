@@ -19,11 +19,17 @@ Ideal para começar um backend moderno e escalável com facilidade.
 ## 📂 Estrutura do Projeto
 
 meu-projeto/
+
 ├── docker-compose.yml
+
 ├── Dockerfile
+
 ├── .env
+
 ├── package.json
+
 └── src/
+
 └── index.js
 
 yaml
