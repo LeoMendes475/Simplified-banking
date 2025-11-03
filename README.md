@@ -69,7 +69,9 @@ pgadmin → Interface gráfica do banco
 
 ## 🌐 Acessos
 Serviço	URL	Usuário / Senha
+
 API Node.js	http://localhost:3000	—
+
 pgAdmin	http://localhost:5050	admin@admin.com / admin
 
 ## 🧭 Configurando o pgAdmin
