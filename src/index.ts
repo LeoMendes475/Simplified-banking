@@ -1,21 +1,22 @@
+// src/index.ts
+
 import express from 'express'
-import pg from 'pg'
 import dotenv from 'dotenv'
+// CORREÇÃO: Adicione a extensão .js para que o Node.js em modo ESM encontre o arquivo compilado
+import { AppDataSource } from './db/data-source-cli.js'
 
 dotenv.config()
 
-const { Pool } = pg
 const app = express()
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-})
+AppDataSource.initialize()
+  .then(() => {
+    console.log('📦 Database connected!')
+    app.listen(3000, () => console.log('🚀 Server running on port 3000'))
+  })
+  .catch((err) => console.error('❌ Error during Data Source initialization:', err))
 
-app.get('/', async (req, res) => {
-  const result = await pool.query('SELECT NOW()')
-  res.json({ time: result.rows[0].now })
-})
-
-app.listen(3000, () => {
-  console.log('🚀 Servidor rodando na porta 3000')
+app.get('/health-check', (req, res) => {
+  // OBS: Adicionei req, res e return
+  res.send('Ok')
 })
