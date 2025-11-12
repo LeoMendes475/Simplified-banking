@@ -28,8 +28,9 @@ export default [
     },
 
     rules: {
-      quotes: ['error', 'single'],
+      // sobrescreve o padrão do typescript-eslint
       indent: ['error', 2],
+      quotes: ['error', 'single'],
       semi: ['error', 'never'],
       'prettier/prettier': [
         'error',

@@ -1,7 +1,7 @@
 # Etapa 1: build (Compilação e ambiente de DEV/CLI)
 FROM node:20-alpine AS build
 
-WORKDIR /app
+WORKDIR /
 
 # 1. Copia arquivos de dependência (para que o cache funcione melhor)
 COPY package*.json ./ 
@@ -20,13 +20,13 @@ RUN npm run build
 # Etapa 2: execução (Produção - Apenas o necessário para rodar a API)
 FROM node:20-alpine
 
-WORKDIR /app
+WORKDIR /
 
 # 1. Copia SÓ os arquivos necessários da Etapa 'build'
-COPY --from=build /app/package*.json ./
-COPY --from=build /app/dist ./dist 
+COPY --from=build /package*.json ./
+COPY --from=build /dist ./dist 
 # ⬇️ NOVO: Traz a pasta 'src' para o runtime, que é o que você precisa para o 'migration:generate'
-COPY --from=build /app/src ./src 
+COPY --from=build /src ./src 
 
 # 2. Instala apenas dependências de produção (produção)
 # Se você precisa do ts-node para rodar o TypeORM CLI, você DEVE remover o '--omit=dev'
