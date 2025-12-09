@@ -1,13 +1,13 @@
-import 'reflect-metadata'
-import { DataSource } from 'typeorm'
-import dotenv from 'dotenv'
-import { fileURLToPath } from 'url'
-import { dirname, resolve } from 'path'
+import 'reflect-metadata';
+import { DataSource } from 'typeorm';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
 
-dotenv.config()
+dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -18,4 +18,4 @@ export const AppDataSource = new DataSource({
   database: process.env.POSTGRES_DB || 'micro_banking',
   entities: [resolve(__dirname, '../../dist/domain/entities/**/*.js')],
   migrations: [resolve(__dirname, './infrastructure/db/migrations/*.ts')],
-})
+});
