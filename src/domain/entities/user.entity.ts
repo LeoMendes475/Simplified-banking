@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { RoleEntity } from './role.entity';
 
 @Entity('user')
 export class UserEntity {
@@ -10,4 +11,10 @@ export class UserEntity {
 
   @Column({ unique: true })
   email: string;
+
+  @Column()
+  cpf: string;
+
+  @ManyToOne(() => RoleEntity, (role) => role.id)
+  role: RoleEntity;
 }
