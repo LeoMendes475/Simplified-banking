@@ -9,10 +9,10 @@
     "start": "node dist/index.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
-    "db:create-migration": "cd src/db/migrations && npx typeorm migration:create",
-    "db:migrate": "npx typeorm migration:run -d src/db/data-source-cli.ts",
-    "db:revert": "npx typeorm migration:revert -d src/db/data-source-cli.ts"
+    "typeorm": "node --loader ts-node/esm ./node_modules/typeorm/cli.js",
+    "db:create-migration": "cd src/infrastructure/db/migrations && npx typeorm migration:create",
+    "db:migrate": "npm run typeorm migration:run -- -d src/infrastructure/db/data-source-cli.ts",
+    "db:revert": "npm run typeorm migration:revert -- -d src/infrastructure/db/data-source-cli.ts"
   },
   "dependencies": {
     "dotenv": "^17.2.3",

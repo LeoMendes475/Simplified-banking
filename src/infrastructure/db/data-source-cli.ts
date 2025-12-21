@@ -16,6 +16,6 @@ export const AppDataSource = new DataSource({
   username: process.env.POSTGRES_USER || 'postgres',
   password: process.env.POSTGRES_PASSWORD || 'postgres',
   database: process.env.POSTGRES_DB || 'micro_banking',
-  entities: [resolve(__dirname, '../../dist/domain/entities/**/*.js')],
-  migrations: [resolve(__dirname, './infrastructure/db/migrations/*.ts')],
+  entities: [resolve(__dirname, '../../domain/entities/**/*.js')],
+  migrations: [resolve(__dirname, './migrations/*.ts')],
 });
