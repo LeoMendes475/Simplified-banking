@@ -5,7 +5,9 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToOne,
 } from 'typeorm';
+import { UserEntity } from './user.entity';
 
 @Entity('payer')
 export class PayerEntity {
@@ -20,6 +22,9 @@ export class PayerEntity {
 
   @Column({ unique: true, length: 11 })
   cpf: string;
+
+  @OneToOne(() => UserEntity, (user) => user.id)
+  user: UserEntity;
 
   @CreateDateColumn()
   createdAt: Date;
