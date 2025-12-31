@@ -25,7 +25,8 @@ export class UserEntity {
   @ManyToOne(() => RoleEntity, (role) => role.id)
   role: RoleEntity;
 
-  @OneToOne(() => PayerEntity, (payer) => payer.id)
+  @OneToOne(() => PayerEntity, (payer) => payer.user)
+  @JoinColumn()
   payer: PayerEntity;
 
   @CreateDateColumn()

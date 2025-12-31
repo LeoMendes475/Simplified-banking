@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from 'typeorm';
 import { UserEntity } from './user.entity';
+import { RoleEnum } from '../../aplication/enum/role.enum';
 
 @Entity('role')
 export class RoleEntity {
@@ -8,10 +9,10 @@ export class RoleEntity {
 
   @Column({
     type: 'enum',
-    enum: ['admin', 'editor', 'user'],
-    default: 'user',
+    enum: RoleEnum,
+    default: RoleEnum.USER,
   })
-  name: string;
+  name: RoleEnum;
 
   @OneToMany(() => UserEntity, (user) => user.id)
   user: UserEntity;
