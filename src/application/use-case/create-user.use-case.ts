@@ -1,5 +1,5 @@
 import { UserEntity } from '../../domain/entities/user.entity';
-import { IUsersRepository } from '../../domain/repositories/user.repository';
+import { IUsersRepository } from '../../domain/repositories/i-user.repository';
 import { ICreateUserDTO } from '../dto/user.dto';
 
 export class CreateUserUseCase {

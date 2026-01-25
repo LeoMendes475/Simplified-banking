@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -37,4 +38,18 @@ export class UserEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(params?: {
+    username: string;
+    password: string;
+    role: RoleEntity;
+    payer: PayerEntity;
+  }) {
+    if (params) {
+      this.username = params.username ?? this.username;
+      this.password = params.password ?? this.password;
+      this.role = params.role ?? this.role;
+      this.payer = params.payer ?? this.payer;
+    }
+  }
 }

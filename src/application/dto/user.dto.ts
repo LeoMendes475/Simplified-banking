@@ -5,4 +5,5 @@ export interface ICreateUserDTO {
   email: string;
   password: string;
   role: RoleEnum;
+  payerId: number;
 }
