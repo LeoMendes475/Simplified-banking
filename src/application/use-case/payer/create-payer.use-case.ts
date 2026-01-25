@@ -14,7 +14,6 @@ export class CreatePayerUseCase {
 
     if (!ExistPayer) throw new Error('The payer already exist');
 
-    const payer = this.payerRepository.create(data);
-    return payer;
+    return this.payerRepository.create(data);
   }
 }
