@@ -1,6 +1,6 @@
-import { PayerEntity } from '../../domain/entities/payer.entity';
-import { IPayerRepository } from '../../domain/repositories/i-payer.repository';
-import { ICreatePayerDTO } from '../dto/payer.dto';
+import { PayerEntity } from '../../../domain/entities/payer.entity';
+import { IPayerRepository } from '../../../domain/repositories/i-payer.repository';
+import { ICreatePayerDTO } from '../../dto/payer.dto';
 import { FindOneByCpf } from './find-payer-by-cpf.use-case';
 
 export class CreatePayerUseCase {
