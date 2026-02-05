@@ -23,11 +23,18 @@ export class UserEntity {
   @Column()
   password: string;
 
+  @Column()
+  roleId: string;
+
   @ManyToOne(() => RoleEntity, (role) => role.id)
+  @JoinColumn({ name: 'roleId' })
   role: RoleEntity;
 
+  @Column()
+  payerId: string;
+
   @OneToOne(() => PayerEntity, (payer) => payer.user)
-  @JoinColumn()
+  @JoinColumn({ name: 'payerId' })
   payer: PayerEntity;
 
   @CreateDateColumn()
@@ -39,17 +46,12 @@ export class UserEntity {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  constructor(params?: {
-    username: string;
-    password: string;
-    role: RoleEntity;
-    payer: PayerEntity;
-  }) {
+  constructor(params?: { username: string; password: string; roleId: string; payerId: string }) {
     if (params) {
       this.username = params.username ?? this.username;
       this.password = params.password ?? this.password;
-      this.role = params.role ?? this.role;
-      this.payer = params.payer ?? this.payer;
+      this.roleId = params.roleId ?? this.roleId;
+      this.payerId = params.payerId ?? this.payerId;
     }
   }
 }

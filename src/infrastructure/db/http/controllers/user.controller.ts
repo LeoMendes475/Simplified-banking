@@ -6,9 +6,9 @@ export class UserController {
 
   async create(req: Request, res: Response): Promise<Response> {
     try {
-      const { name, email, password, payerId, role } = req.body;
+      const { email, password, payerId, roleId } = req.body;
 
-      const user = await this.createUserUseCase.execute({ name, email, password, payerId, role });
+      const user = await this.createUserUseCase.execute({ email, password, payerId, roleId });
 
       return res.status(201).json(user);
     } catch (error: unknown) {
