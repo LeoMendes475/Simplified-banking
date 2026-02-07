@@ -34,6 +34,7 @@ services:
 
   api:
     build: .
+    image: microbanking_api_image:latest
     container_name: microbanking_api
     ports:
       - "3000:3000"
