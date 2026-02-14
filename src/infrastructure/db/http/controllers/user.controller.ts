@@ -1,14 +1,15 @@
 import { Request, Response } from 'express';
-import { CreateUserUseCase } from '../../../../application/use-case/user/create-user.use-case';
+import { RegisterNewCustomerUseCase } from '../../../../application/use-case/user/register-new-customer';
+import { createNewCustomerSchema } from '../../../../application/dto/user.dto';
 
 export class UserController {
-  constructor(private createUserUseCase: CreateUserUseCase) {}
+  constructor(private registerNewCustomerUseCase: RegisterNewCustomerUseCase) {}
 
   async create(req: Request, res: Response): Promise<Response> {
     try {
-      const { email, password, payerId, roleId } = req.body;
+      const newUser = createNewCustomerSchema.safeParse(req.body);
 
-      const user = await this.createUserUseCase.execute({ email, password, payerId, roleId });
+      const user = await this.registerNewCustomerUseCase.execute(newUser);
 
       return res.status(201).json(user);
     } catch (error: unknown) {
