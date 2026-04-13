@@ -1,3 +1,4 @@
+import pino from 'pino';
 import { PayerEntity } from '../../../domain/entities/payer.entity';
 import { IPayerRepository } from '../../../domain/repositories/i-payer.repository';
 import { ICreatePayerDTO } from '../../dto/payer.dto';
@@ -10,9 +11,13 @@ export class CreatePayerUseCase {
   ) {}
 
   async execute(data: ICreatePayerDTO): Promise<PayerEntity> {
-    const ExistPayer = this.findPayerByCpfUseCase.execute(data.cpf);
+    const ExistPayer = await this.findPayerByCpfUseCase.execute(data.cpf);
+    const logger = pino();
 
-    if (!ExistPayer) throw new Error('The payer already exist');
+    if (ExistPayer) {
+      logger.info(`The payer with documentNumber ${ExistPayer.cpf}  already exist`);
+      throw new Error('The payer already exist');
+    }
 
     return this.payerRepository.create(data);
   }
