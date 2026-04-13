@@ -36,23 +36,18 @@ const userController = new UserController({
   deleteUserUseCase,
 });
 
-// Criar usuário
 userRoutes.post('/', validateResource(createNewCustomerSchema), (req, res) =>
   userController.create(req, res),
 );
 
-// Listar todos os usuários
 userRoutes.get('/', (req, res) => userController.findAll(req, res));
 
-// Buscar usuário por id, cpf, email ou username
 userRoutes.get('/search', (req, res) => userController.findOne(req, res));
 
-// Atualizar usuário
 userRoutes.put('/:id', validateResource(updateUserSchema), (req, res) =>
   userController.update(req, res),
 );
 
-// Deletar usuário
 userRoutes.delete('/:id', (req, res) => userController.delete(req, res));
 
 export { userRoutes };
