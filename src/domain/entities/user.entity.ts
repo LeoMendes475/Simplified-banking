@@ -15,7 +15,7 @@ import { PayerEntity } from './payer.entity';
 @Entity('user')
 export class UserEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column({ unique: true })
   username: string;

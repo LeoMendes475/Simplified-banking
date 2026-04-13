@@ -1,3 +1,12 @@
+export const updateUserSchema = z.object({
+  email: z.string().email().optional(),
+  password: z.string().min(8).optional(),
+  roleId: z.string().optional(),
+  payerId: z.string().optional(),
+  name: z.string().min(3).optional(),
+});
+
+export type IUpdateUserDTO = z.infer<typeof updateUserSchema>;
 import * as z from 'zod';
 import { cpfSchema } from '../../shared/utils/validators';
 import { UserEntity } from '../../domain/entities/user.entity';
