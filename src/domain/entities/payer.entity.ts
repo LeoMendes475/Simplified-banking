@@ -14,13 +14,13 @@ export class PayerEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', unique: true })
   email: string;
 
-  @Column({ unique: true, length: 11 })
+  @Column({ type: 'varchar', unique: true, length: 11 })
   cpf: string;
 
   @OneToOne(() => UserEntity, (user) => user.id)

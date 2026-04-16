@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -15,9 +16,10 @@ export class BankingEntity {
   id: number;
 
   @OneToOne(() => PayerEntity, (payer) => payer.id)
+  @JoinColumn()
   payer: PayerEntity;
 
-  @Column({ nullable: false })
+  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
   value: number;
 
   @CreateDateColumn()

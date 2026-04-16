@@ -17,20 +17,20 @@ export class UserEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', unique: true })
   username: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   password: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   roleId: string;
 
   @ManyToOne(() => RoleEntity, (role) => role.id)
   @JoinColumn({ name: 'roleId' })
   role: RoleEntity;
 
-  @Column()
+  @Column({ type: 'varchar' })
   payerId: string;
 
   @OneToOne(() => PayerEntity, (payer) => payer.user)
