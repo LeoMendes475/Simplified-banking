@@ -11,6 +11,7 @@ import * as z from 'zod';
 import { cpfSchema } from '../../shared/utils/validators';
 import { UserEntity } from '../../domain/entities/user.entity';
 import { PayerEntity } from '../../domain/entities/payer.entity';
+import { BankingEntity } from '../../domain/entities/banking.entity';
 
 export const createUserSchema = z.object({
   email: z.email({ pattern: z.regexes.email }).min(3, 'Email invalido'),
@@ -31,6 +32,7 @@ export const createNewCustomerSchema = z.object({
 export const userResponseSchema = z.object({
   user: z.instanceof(UserEntity),
   payer: z.instanceof(PayerEntity),
+  banking: z.instanceof(BankingEntity),
 });
 
 export type ICreateUserDTO = z.infer<typeof createUserSchema>;

@@ -12,7 +12,7 @@ import { UserEntity } from './user.entity';
 @Entity('payer')
 export class PayerEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column()
   name: string;
