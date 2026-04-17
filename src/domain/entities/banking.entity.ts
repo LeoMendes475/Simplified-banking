@@ -15,12 +15,15 @@ export class BankingEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ type: 'varchar', unique: true })
+  payerId: string;
+
   @OneToOne(() => PayerEntity, (payer) => payer.id)
   @JoinColumn()
   payer: PayerEntity;
 
   @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
-  value: number;
+  balance: number;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -30,4 +33,11 @@ export class BankingEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(params?: { balance?: number; payerId?: string }) {
+    if (params) {
+      this.balance = params.balance ?? 0;
+      this.payerId = params.payerId!;
+    }
+  }
 }

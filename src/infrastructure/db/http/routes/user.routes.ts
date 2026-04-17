@@ -11,18 +11,26 @@ import { CreatePayerUseCase } from '../../../../application/use-case/payer/creat
 import { PayerRepository } from '../../repositories/payer.repository';
 import { RegisterNewCustomerUseCase } from '../../../../application/use-case/user/register-new-customer';
 import { FindOneByCpf } from '../../../../application/use-case/payer/find-payer-by-cpf.use-case';
+import { CreateBankingUseCase } from '../../../../application/use-case/banking/create-banking.use-case';
+import { BankingRepository } from '../../repositories/banking.repository';
 
 const userRoutes = Router();
 
 const userRepository = new UserRepository();
 const payerRepository = new PayerRepository();
+const bankingRepository = new BankingRepository();
 const createUserUseCase = new CreateUserUseCase(userRepository);
+const findOneByCpf = new FindOneByCpf(payerRepository);
+const createBankingUseCase = new CreateBankingUseCase(bankingRepository);
 
 const findPayerByCpfUseCase = new FindOneByCpf(payerRepository);
 const createPayerUseCase = new CreatePayerUseCase(payerRepository, findPayerByCpfUseCase);
 const registerNewCustomerUseCase = new RegisterNewCustomerUseCase(
   createUserUseCase,
   createPayerUseCase,
+  findOneByCpf,
+  createBankingUseCase,
+  bankingRepository,
 );
 
 const findAllUsersUseCase = new FindAllUsersUseCase(userRepository);

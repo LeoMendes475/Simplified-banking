@@ -3,6 +3,6 @@ import { PayerEntity } from '../entities/payer.entity';
 
 export interface IPayerRepository {
   create(data: ICreatePayerDTO): Promise<PayerEntity>;
-  findOneById(id: number): Promise<PayerEntity | null>;
+  findOneById(id: string): Promise<PayerEntity | null>;
   findOneByCpf(cpf: string): Promise<PayerEntity | null>;
 }

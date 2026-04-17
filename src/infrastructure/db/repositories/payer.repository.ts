@@ -15,7 +15,7 @@ export class PayerRepository implements IPayerRepository {
     return this.repository.create(data);
   }
 
-  async findOneById(id: number): Promise<PayerEntity | null> {
+  async findOneById(id: string): Promise<PayerEntity | null> {
     return this.repository.findOneBy({ id });
   }
 

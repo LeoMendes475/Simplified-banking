@@ -21,7 +21,7 @@ describe('CreateUserUseCase', () => {
             email: 'john@example.com',
             password: 'password123',
             role: RoleEnum.USER,
-            payerId: 123
+            payerId: "123"
         };
 
         const userEntity = new UserEntity({...createUserDTO, payer: { id: createUserDTO.payerId}});

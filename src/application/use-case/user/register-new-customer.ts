@@ -4,22 +4,22 @@ import { INewCustomerDTO, UserResponse } from '../../dto/user.dto';
 import { CreateBankingUseCase } from '../banking/create-banking.use-case';
 import { CreatePayerUseCase } from '../payer/create-payer.use-case';
 import { CreateUserUseCase } from './create-user.use-case';
-import { IPayerRepository } from '../../../domain/repositories/i-payer.repository';
 import { IBankingRepository } from '../../../domain/repositories/i-banking.repository';
+import { FindOneByCpf } from '../payer/find-payer-by-cpf.use-case';
+
+const logger = pino();
 
 export class RegisterNewCustomerUseCase {
   constructor(
     private createUserUseCase: CreateUserUseCase,
     private createPayerUseCase: CreatePayerUseCase,
-    private payerRepository: IPayerRepository,
+    private findPayerByCpf: FindOneByCpf,
     private createBankingUseCase: CreateBankingUseCase,
     private bankingRepository: IBankingRepository,
   ) {}
 
   async execute(data: INewCustomerDTO): Promise<UserResponse> {
-    const logger = pino();
-
-    let payer = await this.payerRepository.findOneByCpf(data.cpf);
+    let payer = await this.findPayerByCpf.execute(data.cpf);
     if (!payer) {
       payer = await this.createPayerUseCase.execute({
         cpf: data.cpf,
