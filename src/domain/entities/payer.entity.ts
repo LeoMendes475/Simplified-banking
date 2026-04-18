@@ -1,17 +1,20 @@
 import {
   Entity,
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
   OneToOne,
+  PrimaryColumn,
 } from 'typeorm';
 import { UserEntity } from './user.entity';
 
 @Entity('payer')
 export class PayerEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn({
+    type: 'uuid',
+    default: () => 'gen_random_uuid()',
+  })
   id: string;
 
   @Column({ type: 'varchar' })
@@ -27,11 +30,11 @@ export class PayerEntity {
   user: UserEntity;
 
   @CreateDateColumn()
-  createdAt: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updated_at: Date;
 
   @DeleteDateColumn()
-  deletedAt: Date;
+  deleted_at: Date;
 }

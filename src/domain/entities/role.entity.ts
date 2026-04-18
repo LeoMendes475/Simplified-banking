@@ -1,16 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from 'typeorm';
+import { Entity, Column, CreateDateColumn, OneToMany, PrimaryColumn } from 'typeorm';
 import { UserEntity } from './user.entity';
 import { RoleEnum } from '../../application/enum/role.enum';
 
 @Entity('role')
 export class RoleEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryColumn({
+    type: 'uuid',
+    default: () => 'gen_random_uuid()',
+  })
+  id: string;
 
   @Column({
     type: 'enum',
     enum: RoleEnum,
-    default: RoleEnum.USER,
+    default: RoleEnum.COSTUMER,
   })
   name: RoleEnum;
 
@@ -18,5 +21,5 @@ export class RoleEntity {
   user: UserEntity;
 
   @CreateDateColumn()
-  createdAt: Date;
+  created_at: Date;
 }

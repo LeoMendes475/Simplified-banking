@@ -3,6 +3,12 @@ import { DataSource } from 'typeorm';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { PayerEntity } from '../../domain/entities/payer.entity';
+import { UserEntity } from '../../domain/entities/user.entity';
+import { BankingEntity } from '../../domain/entities/banking.entity';
+import { CategoryEntity } from '../../domain/entities/category.entity';
+import { RoleEntity } from '../../domain/entities/role.entity';
+import { TransactionEntity } from '../../domain/entities/transaction.entity';
 
 dotenv.config();
 
@@ -16,6 +22,6 @@ export const AppDataSource = new DataSource({
   username: process.env.POSTGRES_USER || 'postgres',
   password: process.env.POSTGRES_PASSWORD || 'postgres',
   database: process.env.POSTGRES_DB || 'micro_banking',
-  entities: [resolve(__dirname, '../../domain/entities/**/*.js')],
+  entities: [PayerEntity, UserEntity, BankingEntity, CategoryEntity, RoleEntity, TransactionEntity],
   migrations: [resolve(__dirname, './migrations/*.ts')],
 });

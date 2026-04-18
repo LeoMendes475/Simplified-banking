@@ -5,15 +5,18 @@ import {
   Entity,
   JoinColumn,
   OneToOne,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { PayerEntity } from './payer.entity';
 
 @Entity('banking')
 export class BankingEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryColumn({
+    type: 'uuid',
+    default: () => 'gen_random_uuid()',
+  })
+  id: string;
 
   @Column({ type: 'varchar', unique: true })
   payerId: string;
@@ -26,13 +29,13 @@ export class BankingEntity {
   balance: number;
 
   @CreateDateColumn()
-  createdAt: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updated_at: Date;
 
   @DeleteDateColumn()
-  deletedAt: Date;
+  deleted_at: Date;
 
   constructor(params?: { balance?: number; payerId?: string }) {
     if (params) {

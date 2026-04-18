@@ -6,7 +6,7 @@ import {
   JoinColumn,
   ManyToOne,
   OneToOne,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { RoleEntity } from './role.entity';
@@ -14,7 +14,10 @@ import { PayerEntity } from './payer.entity';
 
 @Entity('user')
 export class UserEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn({
+    type: 'uuid',
+    default: () => 'gen_random_uuid()',
+  })
   id: string;
 
   @Column({ type: 'varchar', unique: true })
@@ -38,13 +41,13 @@ export class UserEntity {
   payer: PayerEntity;
 
   @CreateDateColumn()
-  createdAt: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updated_at: Date;
 
   @DeleteDateColumn()
-  deletedAt: Date;
+  deleted_at: Date;
 
   constructor(params?: { username: string; password: string; roleId: string; payerId: string }) {
     if (params) {

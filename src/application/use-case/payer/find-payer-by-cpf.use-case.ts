@@ -18,6 +18,7 @@ export class FindOneByCpf {
 
       return payer;
     } catch (error) {
+      console.log('ERRO REAL DO TYPEORM:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
 
       logger.error(
@@ -25,7 +26,7 @@ export class FindOneByCpf {
         'Critical error: Failed to access database while searching for CPF',
       );
 
-      throw new Error('Database service is currently unavailable.');
+      throw new Error(`Database service is currently unavailable - error: ${error}`);
     }
   }
 }

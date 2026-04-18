@@ -5,7 +5,7 @@ import {
   Entity,
   ManyToOne,
   OneToOne,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { PayerEntity } from './payer.entity';
@@ -14,10 +14,13 @@ import { CategoryEntity } from './category.entity';
 
 @Entity('transaction')
 export class TransactionEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryColumn({
+    type: 'uuid',
+    default: () => 'gen_random_uuid()',
+  })
+  id: string;
 
-  @Column({ nullable: false })
+  @Column({ type: 'decimal', precision: 10, scale: 2, nullable: false })
   value: number;
 
   @OneToOne(() => PayerEntity, (payer) => payer.id)
@@ -30,11 +33,11 @@ export class TransactionEntity {
   banking: BankingEntity;
 
   @CreateDateColumn()
-  createdAt: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updated_at: Date;
 
   @DeleteDateColumn()
-  deletedAt: Date;
+  deleted_at: Date;
 }
